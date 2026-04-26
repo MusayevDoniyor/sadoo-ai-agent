@@ -5,7 +5,7 @@ import { useStore } from "@/store/useStore";
 import { useServerFn } from "@tanstack/react-start";
 import { copilot, summarizeCall, customerPreChat, buildProfile } from "@/server/ai.functions";
 import { SegmentBadge, RiskBadge, StatusDot } from "@/components/Badges";
-import type { ChatMessage, CopilotSuggestion, TranscriptTurn } from "@/types";
+import type { ActiveCall, ChatMessage, CopilotSuggestion, CustomerMemory, Formula, TranscriptTurn } from "@/types";
 
 export const Route = createFileRoute("/operator")({
   component: OperatorPage,
@@ -193,7 +193,7 @@ function Stat({ n, l }: { n: React.ReactNode; l: string }) {
   );
 }
 
-function CallCustomerCard({ call }: { call: ReturnType<typeof useStore.getState>["activeCalls"] extends Map<string, infer V> ? V : never }) {
+function CallCustomerCard({ call }: { call: ActiveCall }) {
   const clients = useStore((s) => s.clients);
   const memory = useStore((s) => s.memory);
   const crm = call.customer.clientCode ? clients.get(call.customer.clientCode) : null;
@@ -243,7 +243,7 @@ function CallTranscript({
   onEnd,
   onSim,
 }: {
-  call: ReturnType<typeof useStore.getState>["activeCalls"] extends Map<string, infer V> ? V : never;
+  call: ActiveCall;
   onAppend: (t: TranscriptTurn) => void;
   onEnd: (outcome: "Completed" | "Pending" | "Declined") => void;
   onSim: () => void;
@@ -363,10 +363,10 @@ function EmptyCall({ onSim }: { onSim: () => void }) {
 function CopilotPanel({
   call, busy, formulas, memory,
 }: {
-  call: ReturnType<typeof useStore.getState>["activeCalls"] extends Map<string, infer V> ? V : never | undefined;
+  call: ActiveCall | null;
   busy: boolean;
-  formulas: ReturnType<typeof useStore.getState>["formulas"];
-  memory: ReturnType<typeof useStore.getState>["memory"] extends Map<string, infer V> ? V | null : null;
+  formulas: Formula[];
+  memory: CustomerMemory | null;
 }) {
   if (!call) {
     return (
