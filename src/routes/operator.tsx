@@ -162,7 +162,12 @@ function OperatorWorkspace({ operatorId, operatorName }: { operatorId: string; o
 
       {/* RIGHT */}
       <aside className="col-span-3 bg-background overflow-y-auto">
-        <CopilotPanel call={call} busy={copBusy} formulas={formulas} memory={call?.customer.phone ? memory.get(call.customer.phone) ?? (call.customer.clientCode ? memory.get(String(call.customer.clientCode)) : null) : null} />
+        <CopilotPanel
+          call={call ?? null}
+          busy={copBusy}
+          formulas={formulas}
+          memory={call ? (memory.get(call.customer.phone) ?? (call.customer.clientCode ? memory.get(String(call.customer.clientCode)) ?? null : null)) : null}
+        />
       </aside>
 
       {showSim && <SimulateCustomer onClose={() => setShowSim(false)} />}
