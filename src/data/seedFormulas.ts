@@ -1,0 +1,68 @@
+import type { Formula } from "@/types";
+
+export const seedFormulas: Formula[] = [
+  {
+    id: "f-greet-uz",
+    type: "greeting",
+    title: "Iliq salomlashish (UZ)",
+    language: "UZ",
+    pattern: "Assalomu alaykum! SADOO bankiga xush kelibsiz. Men {operator}, sizga qanday yordam bera olaman?",
+    successCount: 142, useCount: 156,
+  },
+  {
+    id: "f-greet-ru",
+    type: "greeting",
+    title: "Тёплое приветствие (RU)",
+    language: "RU",
+    pattern: "Здравствуйте! Банк SADOO. Меня зовут {operator}. Чем могу помочь?",
+    successCount: 98, useCount: 110,
+  },
+  {
+    id: "f-disc-needs",
+    type: "discovery",
+    title: "Aniqlash savoli — ehtiyoj",
+    language: "UZ",
+    pattern: "Tushundim. Aniqroq savol bersam: bu siz uchun qisqa muddatli yechimmi yoki uzoq muddatli reja?",
+    successCount: 88, useCount: 120,
+  },
+  {
+    id: "f-obj-price",
+    type: "objection",
+    title: "Narx e'tirozi — qiymat tilida javob",
+    language: "UZ",
+    pattern: "Sizni tushunaman. Lekin oylik {amount} so‘mga siz {benefit} olasiz — bu boshqa banklarda {compare} dan boshlanadi.",
+    successCount: 67, useCount: 95,
+  },
+  {
+    id: "f-close-soft",
+    type: "closing",
+    title: "Yumshoq yopilish",
+    language: "UZ",
+    pattern: "Hozir rasmiylashtiramizmi? 2 daqiqada SMS orqali tasdiqlaymiz.",
+    successCount: 71, useCount: 88,
+  },
+  {
+    id: "f-upsell-deposit",
+    type: "upsell",
+    title: "Krediti bor → depozit taklifi",
+    language: "UZ",
+    pattern: "Sizda kreditingiz bor — yillik 22% depozitimiz bilan oylik to‘lovlaringizni qisman qoplashingiz mumkin.",
+    successCount: 54, useCount: 80,
+  },
+  {
+    id: "f-retain-vip",
+    type: "retention",
+    title: "VIP segmentni saqlash",
+    language: "UZ",
+    pattern: "VIP mijoz sifatida sizga shaxsiy menejer va bepul yetkazib berish xizmatini taklif qilamiz.",
+    successCount: 39, useCount: 50,
+  },
+  {
+    id: "f-obj-trust-ru",
+    type: "objection",
+    title: "Доверие — ответ на сомнение",
+    language: "RU",
+    pattern: "Понимаю ваши сомнения. SADOO работает с 2008 года, средства застрахованы Фондом гарантирования.",
+    successCount: 45, useCount: 70,
+  },
+];
