@@ -1,6 +1,8 @@
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
 import appCss from "../styles.css?url";
 import { TopBar } from "@/components/TopBar";
+import { initQueueSync } from "@/store/sync";
 
 function NotFound() {
   return (
@@ -38,14 +40,19 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootShell,
-  component: () => (
+  component: RootComponent,
+  notFoundComponent: NotFound,
+});
+
+function RootComponent() {
+  useEffect(() => { initQueueSync(); }, []);
+  return (
     <>
       <TopBar />
       <Outlet />
     </>
-  ),
-  notFoundComponent: NotFound,
-});
+  );
+}
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
